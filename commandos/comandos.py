@@ -1,6 +1,7 @@
 from twitchio.ext import commands
 from commandos.hola import obtener_saludo
 from commandos.tts import hablar
+from commandos.abrazo import obtener_abrazo_nadie, obtener_abrazo_auto, obtener_abrazo
 
 @commands.command(name='hola')
 async def hola(ctx):
@@ -10,12 +11,12 @@ async def hola(ctx):
 @commands.command(name="abrazo")
 async def abrazo(ctx, *, nick: str = None):
     if not nick:
-        await ctx.send("No puedes abrazar al aire, ¿lo sabes verdad?")
+        await ctx.send(obtener_abrazo_nadie(ctx.author.name))
         return
     elif nick.lower() == ctx.author.name.lower():
-        await ctx.send(f"Eh, no lo sé {ctx.author.name}, es raro que te abrazes a ti mism@, ¿estás bien?")
+        await ctx.send(obtener_abrazo_auto(ctx.author.name))
     else:
-        await ctx.send(f"¡{ctx.author.name} abraza a {nick}!")
+        await ctx.send(obtener_abrazo(ctx.author.name, nick))
     
 @commands.command(name='decir')
 async def decir(ctx, *, texto: str = None):
