@@ -2,6 +2,7 @@ from twitchio.ext import commands
 from commandos.hola import obtener_saludo
 from commandos.tts import hablar
 from commandos.abrazo import obtener_abrazo_nadie, obtener_abrazo_auto, obtener_abrazo
+from commandos.odio import odio_sin_blanco, odio_dirigido, odio_auto
 
 @commands.command(name='hola')
 async def hola(ctx):
@@ -17,6 +18,18 @@ async def abrazo(ctx, *, nick: str = None):
         await ctx.send(obtener_abrazo_auto(ctx.author.name))
     else:
         await ctx.send(obtener_abrazo(ctx.author.name, nick))
+        
+        
+#Comando sugerido por DHardySD
+@commands.command(name="odio")
+async def odio(ctx, *, nick: str = None):
+    if not nick:
+        await ctx.send(odio_sin_blanco(ctx.author.name))
+        return
+    elif nick.lower() == ctx.author.name.lower():
+        await ctx.send(odio_auto(ctx.author.name))
+    else:
+        await ctx.send(odio_dirigido(ctx.author.name, nick))
     
 @commands.command(name='decir')
 async def decir(ctx, *, texto: str = None):

@@ -1,7 +1,7 @@
 import secrets_1
 from twitchio.ext import commands
 
-from commandos.comandos import comandos, hola, abrazo, decir
+from commandos.comandos import comandos, hola, abrazo, decir, odio
 
 class ChatReader(commands.Bot):
 
@@ -19,6 +19,7 @@ class ChatReader(commands.Bot):
         self.add_command(hola)
         self.add_command(abrazo)
         self.add_command(decir)
+        self.add_command(odio)
     
     async def event_ready(self):
         print(f"Bot has connected to Twitch as {self.nick}")
