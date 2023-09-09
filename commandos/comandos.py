@@ -1,6 +1,6 @@
 from twitchio.ext import commands
-from hola import obtener_saludo
-from tts import hablar
+from commandos.hola import obtener_saludo
+from commandos.tts import hablar
 
 @commands.command(name='hola')
 async def hola(ctx):

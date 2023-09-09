@@ -1,7 +1,7 @@
 import secrets_1
 from twitchio.ext import commands
 
-from comandos.comandos import comandos, hola, abrazo, decir
+from commandos.comandos import comandos, hola, abrazo, decir
 
 class ChatReader(commands.Bot):
 
