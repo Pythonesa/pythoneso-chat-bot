@@ -1,7 +1,7 @@
 import secrets_1
 from twitchio.ext import commands
 
-from comandos import comandos, hola, abrazo, decir
+from comandos.comandos import comandos, hola, abrazo, decir
 
 class ChatReader(commands.Bot):
 
@@ -22,10 +22,3 @@ class ChatReader(commands.Bot):
     
     async def event_ready(self):
         print(f"Bot has connected to Twitch as {self.nick}")
-
-    async def event_message(self, message):
-        author_name = message.author.name if message.author else "Usuario Desconocido"
-        formatted_message = f"{author_name}: {message.content}\n"
-        self.chat_window.insert(tk.END, formatted_message)
-        self.chat_window.see(tk.END)
-        await self.handle_commands(message)
