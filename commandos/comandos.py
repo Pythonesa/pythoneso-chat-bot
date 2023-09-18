@@ -4,6 +4,7 @@ from commandos.tts import hablar
 from commandos.abrazo import obtener_abrazo_nadie, obtener_abrazo_auto, obtener_abrazo
 from commandos.odio import odio_sin_blanco, odio_dirigido, odio_auto
 from commandos.alcohol import obtener_alcohol_solo, obtener_invitar_alcohol
+from commandos.sonidos import reproducir_sonido
 
 @commands.command(name='hola')
 async def hola(ctx):
@@ -76,7 +77,12 @@ async def decir(ctx, *, texto: str = None):
         hablar(txt)
     else:
         await ctx.send(f"TTS desactivado: {txt}")
+        
+
+@commands.command(name='latigo')
+async def latigo(ctx):
+    reproducir_sonido("latigo")
     
 @commands.command(name='comandos')
 async def comandos(ctx):
-    await ctx.send(f"Comandos disponibles: !hola !abrazo !decir !odio !youtube !github !redes !discord !streams !alcohol")
+    await ctx.send(f"Comandos disponibles: !hola !abrazo !decir !odio !youtube !github !redes !discord !streams !alcohol !latigo")
