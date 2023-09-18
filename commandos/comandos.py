@@ -30,6 +30,32 @@ async def odio(ctx, *, nick: str = None):
         await ctx.send(odio_auto(ctx.author.name))
     else:
         await ctx.send(odio_dirigido(ctx.author.name, nick))
+
+
+@commands.command(name='youtube')
+async def youtube(ctx):
+    await ctx.send(f"Mira las clases grabadas: https://www.youtube.com/@pythonesa")
+    
+
+@commands.command(name='github')
+async def github(ctx):
+    await ctx.send(f"Mirá los ejercicios y código de las clases además de otros proyectos en el repo de GitHub: https://github.com/Pythonesa")
+    
+
+@commands.command(name='redes')
+async def redes(ctx):
+    await ctx.send(f"Seguime en twitter: https://twitter.com/pythonesamar y también en facebook: https://www.facebook.com/pythonesa")
+    
+    
+@commands.command(name='discord')
+async def discord(ctx):
+    await ctx.send(f"Unete a la comunidad de discord: https://discord.gg/QkBvKDKHSw")
+    
+    
+@commands.command(name='streams')
+async def streams(ctx):
+    await ctx.send(f"Martes y Jueves hacemos streams con Python y los viernes con Java. Podés ver los horarios en la agenda de Twitch.")
+
     
 @commands.command(name='decir')
 async def decir(ctx, *, texto: str = None):
@@ -44,4 +70,4 @@ async def decir(ctx, *, texto: str = None):
     
 @commands.command(name='comandos')
 async def comandos(ctx):
-    await ctx.send(f"Comandos disponibles: !hola  !abrazo  !decir  !odio")
+    await ctx.send(f"Comandos disponibles: !hola !abrazo !decir !odio !youtube !github !redes !discord !streams")
