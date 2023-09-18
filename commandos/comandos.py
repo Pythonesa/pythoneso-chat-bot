@@ -3,6 +3,7 @@ from commandos.hola import obtener_saludo
 from commandos.tts import hablar
 from commandos.abrazo import obtener_abrazo_nadie, obtener_abrazo_auto, obtener_abrazo
 from commandos.odio import odio_sin_blanco, odio_dirigido, odio_auto
+from commandos.alcohol import obtener_alcohol_solo, obtener_invitar_alcohol
 
 @commands.command(name='hola')
 async def hola(ctx):
@@ -30,6 +31,14 @@ async def odio(ctx, *, nick: str = None):
         await ctx.send(odio_auto(ctx.author.name))
     else:
         await ctx.send(odio_dirigido(ctx.author.name, nick))
+        
+        
+@commands.command(name='alcohol')
+async def alcohol(ctx, *, nick: str = None):
+    if not nick or nick.lower() == ctx.author.name.lower():
+        await ctx.send(obtener_alcohol_solo(ctx.author.name))
+    else:
+        await ctx.send(obtener_invitar_alcohol(ctx.author.name, nick))
 
 
 @commands.command(name='youtube')
@@ -70,4 +79,4 @@ async def decir(ctx, *, texto: str = None):
     
 @commands.command(name='comandos')
 async def comandos(ctx):
-    await ctx.send(f"Comandos disponibles: !hola !abrazo !decir !odio !youtube !github !redes !discord !streams")
+    await ctx.send(f"Comandos disponibles: !hola !abrazo !decir !odio !youtube !github !redes !discord !streams !alcohol")
