@@ -4,15 +4,17 @@ import threading
 import asyncio
 
 class ChatReaderWithGUI(ChatReader):
-    def __init__(self, chat_window, tts_active, ocultar_comandos, *args, **kwargs):
+    def __init__(self, chat_window, tts_active, ocultar_comandos, desplazar_chat, *args, **kwargs):
         super().__init__(chat_window=chat_window, tts_active=tts_active, *args, **kwargs)
         self.ocultar_comandos = ocultar_comandos
+        self.desplazar_chat = desplazar_chat
 
     def insertar_mensajes(self, message):
         author_name = message.author.name if message.author else "pythoneso"
         formatted_message = f"{author_name}: {message.content}\n"
         self.chat_window.insert(tk.END, formatted_message)
-        self.chat_window.see(tk.END)
+        if self.desplazar_chat.get():
+            self.chat_window.see(tk.END)
         
     async def event_message(self, message):
         if not self.ocultar_comandos.get():
@@ -23,12 +25,12 @@ class ChatReaderWithGUI(ChatReader):
         await self.handle_commands(message)
 
 
-def start_bot(chat_window, tts_active_var, ocultar_comandos_var):
+def start_bot(chat_window, tts_active_var, ocultar_comandos_var, desplazar_chat_var):
     global reader
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-    reader = ChatReaderWithGUI(chat_window, tts_active=tts_active_var, ocultar_comandos=ocultar_comandos_var)
+    reader = ChatReaderWithGUI(chat_window, tts_active=tts_active_var, ocultar_comandos=ocultar_comandos_var, desplazar_chat=desplazar_chat_var)
     loop.run_until_complete(reader.run())
 
 def main():
@@ -39,6 +41,7 @@ def main():
     
     tts_active = tk.BooleanVar(value=True)
     ocultar_comandos = tk.BooleanVar(value=False)
+    desplazar_chat = tk.BooleanVar(value=False)
 
     def update_tts_state(*args):
         global reader
@@ -55,10 +58,13 @@ def main():
     checkbox_ocultar_comandos = tk.Checkbutton(checkboxs_frame, text="Ocultar comandos", variable=ocultar_comandos, bg="#1a1a1a", fg="#7f7f7f", activebackground="#1a1a1a", activeforeground="#7f7f7f")
     checkbox_ocultar_comandos.pack(side=tk.LEFT, padx=10, pady=5)
     
+    checkbox_desplazar_chat = tk.Checkbutton(checkboxs_frame, text="Desplazar chat", variable=desplazar_chat, bg="#1a1a1a", fg="#7f7f7f", activebackground="#1a1a1a", activeforeground="#7f7f7f")
+    checkbox_desplazar_chat.pack(side=tk.LEFT, padx=10, pady=5)
+    
     chat_window = tk.Text(root, bg="#1a1a1a", fg="#e0e0e0", font=("Hack", 14))
     chat_window.pack(fill=tk.BOTH, expand=True)
 
-    bot_thread = threading.Thread(target=start_bot, args=(chat_window, tts_active, ocultar_comandos))
+    bot_thread = threading.Thread(target=start_bot, args=(chat_window, tts_active, ocultar_comandos, desplazar_chat))
     bot_thread.start()
 
     def on_close():

@@ -44,4 +44,4 @@ async def decir(ctx, *, texto: str = None):
     
 @commands.command(name='comandos')
 async def comandos(ctx):
-    await ctx.send(f"Comandos disponibles: !hola  !abrazo  !decir")
+    await ctx.send(f"Comandos disponibles: !hola  !abrazo  !decir  !odio")
