@@ -81,7 +81,8 @@ async def decir(ctx, *, texto: str = None):
 
 @commands.command(name='latigo')
 async def latigo(ctx):
-    reproducir_sonido("latigo")
+    if ctx.bot.reproducir_sonidos.get():
+        reproducir_sonido("latigo")
     
 @commands.command(name='comandos')
 async def comandos(ctx):

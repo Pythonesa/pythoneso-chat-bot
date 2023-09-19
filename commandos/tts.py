@@ -6,6 +6,6 @@ def hablar(texto):
     filename = "audio.mp3"
     tts.save(filename)
     
-    os.system(f"mpv {filename}")
+    os.system(f"mpv {filename}",)
     
     os.remove(filename)    
