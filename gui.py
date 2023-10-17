@@ -69,7 +69,7 @@ def main():
     chat_window = tk.Text(root, bg="#1a1a1a", fg="#e0e0e0", font=("Hack", 14))
     chat_window.pack(fill=tk.BOTH, expand=True)
 
-    bot_thread = threading.Thread(target=start_bot, args=(chat_window, tts_active, reproducir_sonidos, ocultar_comandos, desplazar_chat))
+    bot_thread = threading.Thread(target=start_bot, args=(chat_window, tts_active, reproducir_sonidos, ocultar_comandos, desplazar_chat), daemon=True)
     bot_thread.start()
 
     def on_close():

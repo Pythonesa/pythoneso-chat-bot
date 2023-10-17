@@ -54,7 +54,7 @@ async def github(ctx):
 
 @commands.command(name='redes')
 async def redes(ctx):
-    await ctx.send(f"Seguime en twitter: https://twitter.com/pythonesamar y también en facebook: https://www.facebook.com/pythonesa")
+    await ctx.send(f"Únete a la comunidad de discord: https://discord.gg/QkBvKDKHSw =================== Mira las clases grabadas: https://www.youtube.com/@pythonesa =================== Síganla en twitter: https://twitter.com/pythonesamar y también en facebook: https://www.facebook.com/pythonesa")
     
     
 @commands.command(name='discord')
@@ -65,7 +65,6 @@ async def discord(ctx):
 @commands.command(name='streams')
 async def streams(ctx):
     await ctx.send(f"Martes y Jueves hacemos streams con Python y los viernes con Java. Podés ver los horarios en la agenda de Twitch.")
-
     
 @commands.command(name='decir')
 async def decir(ctx, *, texto: str = None):
